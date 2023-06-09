@@ -15,27 +15,27 @@ public class LoadBalancedRoutes {
     @Bean
     public RouteLocator customLoadBalancedRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/api/v1/users", "/api/v1/users/*","api/v1/reports/*","api/v1/friends/*","api/v1/admin/*")
+                .route(r -> r.path("/api/v1/users", "/api/v1/users/**","api/v1/reports/**","api/v1/friends/**","api/v1/admin/**")
                         .filters(f-> f
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
                         .uri("lb://core-service")
                 )
-                .route(r -> r.path("/api/v1/auth", "/api/v1/auth/*")
+                .route(r -> r.path("/api/v1/auth", "/api/v1/auth/**")
                         .filters(f-> f
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
                         .uri("lb://auth-service")
                 )
-                .route(r -> r.path("/api/v1/notify/*", "/api/v1/notification/*")
+                .route(r -> r.path("/api/v1/notify/**", "/api/v1/notification/**")
                         .filters(f-> f
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
                         .uri("lb://notification-service")
                 )
-                .route(r -> r.path("/api/v1/groups", "/api/v1/groups/*",
-                                "/api/v1/search","/api/v1/search/*",
-                                "/api/v1/userGroups","/api/v1/userGroups/*")
+                .route(r -> r.path("/api/v1/groups", "/api/v1/groups/**",
+                                "/api/v1/search","/api/v1/search/**",
+                                "/api/v1/userGroups","/api/v1/userGroups/**")
                         .filters(f-> f
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
