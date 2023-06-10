@@ -15,7 +15,7 @@ public class LoadBalancedRoutes {
     @Bean
     public RouteLocator customLoadBalancedRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/api/v1/users", "/api/v1/users/**","api/v1/reports/**","api/v1/friends/**","api/v1/admin/**")
+                .route(r -> r.path("/api/v1/users", "/api/v1/users/**","/api/v1/reports/**","/api/v1/friends/**","/api/v1/admin/**")
                         .filters(f-> f
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
