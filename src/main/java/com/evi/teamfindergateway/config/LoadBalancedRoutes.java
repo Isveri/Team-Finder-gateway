@@ -41,6 +41,15 @@ public class LoadBalancedRoutes {
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
                         .uri("lb://group-management-service")
                 )
+                .route(r -> r.path("/api/v1/chat/**","/ws/**",
+                                "//chat/**","/privateChat/**","/api/v1/chatLogs/**",
+                                "/api/v1/users/chatLogs/*","/api/v1/deletedGroupsLogs/**","/api/v1/messageRead/**",
+                                "/api/v1/unreadMessages","/topic/**","/app/**")
+                        .filters(f-> f
+                                .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
+                                .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
+                        .uri("lb://chat-service")
+                )
                 .build();
     }
 }
