@@ -21,7 +21,7 @@ public class LoadBalancedRoutes {
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
                         .uri("lb://core-service")
                 )
-                .route(r -> r.path("/api/v1/auth", "/api/v1/auth/**")
+                .route(r -> r.path("/api/v1/auth", "/api/v1/auth/**","/api/v1/platform/**")
                         .filters(f-> f
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
